@@ -1,0 +1,50 @@
+RECIPE APP
+==========
+GIT : https://github.com/niscala/recipe.git
+
+
+Lain - lain
+
+1. Import basis data di folder 'dbdoc' dengan file 'recipe.sql'
+   (sudah termasuk buat basis data dan data dummy, tinggal di import saja,
+   usahakan tidak ada basis data dengan nama recipe)
+
+2. API URL
+
+   - Ambil semua bahan masakan
+     yourHost/api/daftar-bahan
+
+   - Ambil bahan masakan tertentu
+     yourHost/api/cari-bahan/{id}
+
+
+Spesifikasi
+
+===========================================================
+Teknologi		|Name			|Version
+===========================================================
+Bahasa program		|PHP			|7.2.x
+Basis data		|Mysql			|5.0.x
+Framework		|Laravel		|5.7
+CSS			|Bootstrap		|4.1.x
+Javascript		|Jquery			|3.3.x
+
+
+
+Proses Dev Tools
+
+=====================================================================
+Tools			|Name
+=====================================================================
+Sistem Operasi		|Windows 7 Ultimate 64 bit
+Server			|Apache
+Browser			|Chrome (tested), browser lain (no tested)
+Editor Text		|Visual Code
+Mysql Tool		|PhpMyAdmin
+
+
+
+
+
+
+
