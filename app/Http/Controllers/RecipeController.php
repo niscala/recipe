@@ -34,14 +34,19 @@ class RecipeController extends Controller {
             'amount' => 'required',
         ]);
         $randNum = rand(0000,9999);
-        $destinationPath = public_path('images/');
-        $tmp_images = $request->images;
-		$tmp_images = str_replace('data:image/png;base64,', '', $tmp_images);
-        $tmp_images = str_replace(' ', '+', $tmp_images);
-		$images = base64_decode($tmp_images);
-        $file_name = uniqid() . '.png';
-        $file_images = $destinationPath . $file_name;
-        $success = file_put_contents($file_images, $images);
+        if ($request->images != null) {
+            $destinationPath = public_path('images/');
+            $tmp_images = $request->images;
+            $tmp_images = str_replace('data:image/png;base64,', '', $tmp_images);
+            $tmp_images = str_replace(' ', '+', $tmp_images);
+            $images = base64_decode($tmp_images);
+            $file_name = uniqid() . '.png';
+            $file_images = $destinationPath . $file_name;
+            $success = file_put_contents($file_images, $images);
+        } else {
+            $file_name = 'default-image.png';
+        }
+      
         $recipes = new Recipe([
             'name_recipe' => $request->name_recipe,
             'id_category' => $request->id_category,
