@@ -3,7 +3,9 @@
 .p-wrap{line-height:1.5em;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
 .pull-right{float:right;}
 .btn-group-xs > .btn, .btn-xs {padding: .25rem .4rem;font-size: .875rem;line-height: .5;border-radius: .2rem;}
-.pos-abs{position:absolute;bottom:0px;}
+.pos-abs{position:absolute;bottom:8px;left:20px;}
 .border-nav{border-bottom: 1px solid rgba(0,0,0,.125);}
 .bg-light{background-color:#ffffff !important}
 .card-header{background-color:#ffffff !important}
+.nb{font-size:0.8em;color:#6c757d;}
+.m-t{margin-top:-15px;}

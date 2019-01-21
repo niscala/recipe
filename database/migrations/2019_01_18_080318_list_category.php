@@ -15,7 +15,7 @@ class ListCategory extends Migration
     {
         Schema::create('list_category', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name_category', '30');
+            $table->string('name_category', '100');
         });
     }
 

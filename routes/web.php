@@ -33,3 +33,7 @@ Route::get('/lihat-bahan', 'MasterController@indexIngredients');
 Route::post('/doadding', 'MasterController@doAddIngredients');
 Route::post('/doediting', 'MasterController@doEditIngredients');
 Route::get('/dodeleteing/{id}', 'MasterController@delIngredients');
+
+//API Route
+Route::get('/api/daftar-bahan', 'ApiController@index');
+Route::get('/api/cari-bahan/{id}', 'ApiController@show');

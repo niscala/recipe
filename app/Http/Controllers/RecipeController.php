@@ -34,7 +34,7 @@ class RecipeController extends Controller {
             'amount' => 'required',
         ]);
         $randNum = rand(0000,9999);
-        $destinationPath = storage_path('app/images/');
+        $destinationPath = public_path('images/');
         $tmp_images = $request->images;
 		$tmp_images = str_replace('data:image/png;base64,', '', $tmp_images);
         $tmp_images = str_replace(' ', '+', $tmp_images);
@@ -121,7 +121,7 @@ class RecipeController extends Controller {
 
     public function updateImg(Request $request) {
         $id = $request->id;
-        $destinationPath = storage_path('app/images/');
+        $destinationPath = public_path('images/');
         $tmp_images = $request->images;
 		$tmp_images = str_replace('data:image/png;base64,', '', $tmp_images);
         $tmp_images = str_replace(' ', '+', $tmp_images);

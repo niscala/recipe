@@ -15,9 +15,12 @@ class RecipeIngredients extends Migration
     {
         Schema::create('recipes_ingredients', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('id_recipe', '5');
-            $table->string('id_ingredients', '5');
-            $table->string('amount', '30');
+            $table->unsignedInteger('id_recipe');
+            $table->foreign('id_recipe')->references('id')->on('recipes');
+            $table->unsignedInteger('id_ingredients');
+            $table->foreign('id_ingredients')->references('id')->on('list_ingredients');
+            $table->string('amount', '50');
+            $table->string('code_num_ing', '4');
         });
     }
 

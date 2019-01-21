@@ -9,13 +9,34 @@
             Kategori
         </div>
         <div class="card-body">
-            <a href="{{url('/')}}" class="btn btn-outline-secondary btn-sm">Kembali</a>
-            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#ModalAddCat">Tambah Kategori</button>
-            @foreach ($checkCategory as $cC)
-                @php
-                $check[] = $cC->id_category
-                @endphp
-            @endforeach
+			@if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </div><br />
+			@endif
+			<div class="row">
+				<div class="col-md-6">
+					<a href="{{url('/')}}" class="btn btn-outline-secondary btn-sm">Kembali</a>
+            		<button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#ModalAddCat">Tambah Kategori</button>
+				</div>
+				<div class="col-md-6">
+					<div class="pull-right">
+						<input type="text" id="word" class="form-control" placeholder="Cari...">
+					</div>
+				</div>
+			</div>
+		@if ($dataCategory->isNotEmpty())
+			@if ($checkCategory->isNotEmpty())
+				@foreach ($checkCategory as $cC)
+					@php
+					$check[] = $cC->id_category
+					@endphp
+				@endforeach
+			@endif
            	<table class="table table-bordered" style="margin-top:10px">
                 <thead>
                     <tr>
@@ -24,24 +45,33 @@
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="permanent-table">
                 @foreach ($dataCategory as $dC)
                     <tr>
                         <td>{{ $dC->id }}</td>
                         <td>{{ $dC->name_category }}</td>
                         <td>
                             <button type="button" class="btn btn-secondary btn-sm" onclick="editCategory('{{$dC->name_category}}','{{$dC->id}}')">Edit</button>
-                            @if (in_array($dC->id, $check))
-                                <button class="btn btn-secondary btn-sm" disabled>Hapus</button>
-                            @else
-                                <a href="{{url('dodeletecategory/'.$dC->id)}}" class="btn btn-secondary btn-sm" onclick="return confirm('Yakin ingin dihapus?')">Hapus</a>
-                           	@endif 
+                            @if ($checkCategory->isNotEmpty())
+								@if (in_array($dC->id, $check))
+									<button class="btn btn-secondary btn-sm" disabled>Hapus</button>
+								@else
+									<a href="{{url('dodeletecategory/'.$dC->id)}}" class="btn btn-secondary btn-sm" onclick="return confirm('Yakin ingin dihapus?')">Hapus</a>
+								@endif
+							@else
+								<a href="{{url('dodeletecategory/'.$dC->id)}}" class="btn btn-secondary btn-sm" onclick="return confirm('Yakin ingin dihapus?')">Hapus</a>
+							@endif
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
-           </table>
-        </div>
+		   </table>
+		   <p class="nb"><b>Keterangan</b></p>
+		   <p class="nb m-t">Kategori yang dapat di <b>Hapus</b> yaitu kategori yang <b>tidak terpakai</b> oleh resep masakan.</p>
+        @else
+			<p style="margin-top:20px">Tidak ada kategori</p>
+		@endif
+		</div>
     </div>
 
 	<!--modal add-->

@@ -24,10 +24,10 @@
             {{ csrf_field() }}
                 <div class="form-row" style="margin-bottom:10px;">
                     <div class="col-md-12" align="center">
-                        <img id="layout-img" width="200" height="200" >
+                        <img id="layout-img" class="rounded" width="200" height="200" >
                         <input type="hidden" id="data-img" name="images" >
                         <div class="img-result">
-                            <img class="cropped" alt="" width="200" height="200" style="display:none">
+                            <img class="cropped rounded" alt="" width="200" height="200" style="display:none">
                         </div>
                     </div>
                 </div>
@@ -46,12 +46,16 @@
                     </div>
                     <div class="form-group col-md-6">
                         <label>Kategori</label>
+                        @if ($dataCategory->isNotEmpty())
                         <select class="form-control" name="id_category">
                             <option selected disabled>-Pilih Kategori Resep-</option>
                             @foreach ($dataCategory as $dC)
                                 <option value="{{ $dC->id }}">{{ $dC->name_category }}</option>
                             @endforeach
                          </select>
+                         @else
+                            <input type="text" name="id_category" class="form-control" value="Tidak ada kategori. Silakan tambahkan kategori" disabled>
+                         @endif
                     </div>
                 </div>
                 <div class="form-row">
@@ -59,18 +63,30 @@
                         <label>Bahan Resep</label>
                     </div>
                     <div class="form-group col-md-7">
+                    @if ($dataIngredients->isNotEmpty())
                         <select class="form-control" name="id_ingredients[]">
                             <option selected disabled>-Pilih bahan-</option>
                             @foreach ($dataIngredients as $dI)
                                 <option value="{{ $dI->id }}">{{ $dI->name_ingredients  }}</option>
                             @endforeach
                         </select>
+                    @else
+                        <input type="text" name="id_ingredients" class="form-control" value="Tidak ada bahan resep. Silakan tambahkan bahan resep" disabled>
+                    @endif
                     </div>
                     <div class="form-group col-md-3">
+                    @if ($dataIngredients->isNotEmpty())
                         <input type="text" class="form-control" name="amount[]" placeholder="Banyaknya">
+                    @else
+                        <input type="text" class="form-control" name="amount[]" disabled>
+                    @endif
                     </div>
                     <div class="form-group col-md-2">
+                    @if ($dataIngredients->isNotEmpty())
                         <button type="button" class="btn btn-outline-secondary btn-sm btn-block" id="addRecipeForm">Tambah Bahan</button>
+                    @else
+                        <button type="button" class="btn btn-outline-secondary btn-sm btn-block" id="addRecipeForm" disabled>Tambah Bahan</button>
+                    @endif
                     </div>
                 </div>
                 <span id="appendRecipeForm"></span>

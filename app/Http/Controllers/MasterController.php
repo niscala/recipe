@@ -23,7 +23,7 @@ class MasterController extends Controller {
             'name_category' => 'required'
         ]);
         $dataCat = new Category ([
-            'name_category' => $request->name_category
+            'name_category' => ucwords($request->name_category)
         ]);
         $dataCat->save();
         return redirect('/lihat-kategori');
@@ -34,7 +34,7 @@ class MasterController extends Controller {
             'name_category' => 'required'
         ]);
         $dataCat = Category::find($request->id);
-        $dataCat->name_category = $request->name_category;
+        $dataCat->name_category = ucwords($request->name_category);
         $dataCat->save();
         return redirect('/lihat-kategori');
     }
@@ -58,7 +58,7 @@ class MasterController extends Controller {
             'name_ingredients' => 'required'
         ]);
         $dataIng = new Ingredients ([
-            'name_ingredients' => $request->name_ingredients
+            'name_ingredients' => ucwords($request->name_ingredients)
         ]);
         $dataIng->save();
         return redirect('/lihat-bahan');
@@ -70,7 +70,7 @@ class MasterController extends Controller {
         ]);
 
         $dataIng = Ingredients::find($request->id);
-        $dataIng->name_ingredients = $request->name_ingredients;
+        $dataIng->name_ingredients = ucwords($request->name_ingredients);
         $dataIng->save();
         return redirect('/lihat-bahan');
     }

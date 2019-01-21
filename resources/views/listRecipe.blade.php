@@ -26,7 +26,7 @@
             <div class="col-md-3 backCol column{{$dR->id_category}}">
                 <div class="card" style="margin-bottom:25px;">
                     <a href="{{ url($dR->id.'/lihat-resep/'.str_replace(' ','-',$dR->name_recipe).'/') }}">
-                        <img src="../storage/app/images/{{ $dR->images }}" class="card-img-top" alt="...">
+                        <img src="{{url('images/'.$dR->images)}}" class="card-img-top" alt="...">
                     </a>
                     <div class="card-body">
                         <h5 class="card-title p-wrap">{{ $dR->name_recipe }}</h5>

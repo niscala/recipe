@@ -9,13 +9,34 @@
             Bahan resep
         </div>
         <div class="card-body">
-            <a href="{{url('/')}}" class="btn btn-outline-secondary btn-sm">Kembali</a>
-            <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#ModalAddIng">Tambah Bahan Resep</button>
-            @foreach ($checkIng as $cI)
-                @php
-                $check[] = $cI->id_ingredients
-                @endphp
-            @endforeach
+			@if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </div><br />
+			@endif
+			<div class="row">
+				<div class="col-md-6">
+					<a href="{{url('/')}}" class="btn btn-outline-secondary btn-sm">Kembali</a>
+            		<button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#ModalAddIng">Tambah Bahan Resep</button>
+				</div>
+				<div class="col-md-6">
+					<div class="pull-right">
+						<input type="text" id="word" class="form-control" placeholder="Cari...">
+					</div>
+				</div>
+			</div>
+        @if ($dataIng->isNotEmpty())
+			@if ($checkIng->isNotEmpty())
+				@foreach ($checkIng as $cI)
+					@php
+					$check[] = $cI->id_ingredients
+					@endphp
+				@endforeach
+			@endif
             <table class="table table-bordered" style="margin-top:10px">
                 <thead>
                     <tr>
@@ -24,24 +45,33 @@
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="permanent-table">
                 @foreach ($dataIng as $dI)
                     <tr>
                         <td>{{ $dI->id }}</td>
                         <td>{{ $dI->name_ingredients }}</td>
                         <td>
                             <button type="button" class="btn btn-secondary btn-sm" onclick="editIngredients('{{$dI->name_ingredients}}','{{$dI->id}}')">Edit</button>
-                            @if (in_array($dI->id, $check))
-                            	<button class="btn btn-secondary btn-sm" disabled>Hapus</button>
-                            @else
-                            	<a href="{{url('dodeleteing/'.$dI->id)}}" class="btn btn-secondary btn-sm" onclick="return confirm('Yakin ingin dihapus?')">Hapus</a>
-                            @endif
+                            @if ($checkIng->isNotEmpty())
+								@if (in_array($dI->id, $check))
+									<button class="btn btn-secondary btn-sm" disabled>Hapus</button>
+								@else
+									<a href="{{url('dodeleteing/'.$dI->id)}}" class="btn btn-secondary btn-sm" onclick="return confirm('Yakin ingin dihapus?')">Hapus</a>
+								@endif
+							@else
+								<a href="{{url('dodeleteing/'.$dI->id)}}" class="btn btn-secondary btn-sm" onclick="return confirm('Yakin ingin dihapus?')">Hapus</a>
+							@endif
                         </td>
                     </tr>
                 @endforeach
                 </tbody>
-           </table>
-        </div>
+		   </table>
+		   <p class="nb"><b>Keterangan</b></p>
+		   <p class="nb m-t">Bahan resep yang dapat di <b>Hapus</b> yaitu bahan yang <b>tidak terpakai</b> oleh resep masakan.</p>
+        @else
+			<p style="margin-top:20px">Tidak ada bahan resep</p>
+		@endif
+		</div>
     </div>
 
 	<!--modal add-->

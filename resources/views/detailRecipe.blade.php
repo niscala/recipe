@@ -12,10 +12,10 @@
             @foreach ($dataRecipe as $dR)
             <div class="row">
                 <div class="col-md-3">
-                    <img id="layout-img" width="200" height="200" src="../../../storage/app/images/{{ $dR->images }}">
+                    <img id="layout-img" class="rounded" width="200" height="200" src="{{url('images/'.$dR->images)}}">
                     <input type="hidden" id="data-img" name="images" >
                     <div class="img-result">
-                        <img class="cropped" alt="" width="200" height="200" style="display:none">
+                        <img class="cropped rounded" alt="" width="200" height="200" style="display:none">
                     </div>
                     <span class="btn btn-secondary btn-sm btn-file pos-abs"> 
                         <span class="fileinput-new">Ganti Gambar</span> 

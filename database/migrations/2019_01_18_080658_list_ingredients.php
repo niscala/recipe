@@ -15,7 +15,7 @@ class ListIngredients extends Migration
     {
         Schema::create('list_ingredients', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name_ingredients', '70');
+            $table->string('name_ingredients', '100');
         });
     }
 

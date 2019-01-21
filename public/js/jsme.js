@@ -355,4 +355,11 @@ $(() => {
         }
     });
 
+    $('#word').keyup(() => {
+        var word = $('#word').val().toLowerCase();
+        $("#permanent-table tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(word) > -1)
+        });
+    });
+
 });
